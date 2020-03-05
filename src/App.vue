@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <h1>here is fraction circle</h1>
+    <FractionCircle></FractionCircle>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import FractionCircle from './components/FractionCircle';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    FractionCircle,
   }
 }
 </script>
