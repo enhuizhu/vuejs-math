@@ -1,0 +1,15 @@
+form {
+  input[type="text"] {
+    border: solid 1px gray;
+  }
+
+  .form-control-group {
+    margin-top: 10px;
+    
+    label {
+      width: 100px;
+      text-align: left;
+      display: inline-block;
+    }
+  }
+}
