@@ -130,7 +130,7 @@ export default {
       // need blur the input
       this.$refs['answer'].blur();
       
-      if (this.areFractionsEqual(firstFraction + secondFraction, eval(sanitizedAnswer))) {
+      if (this.areFractionsEqual(firstFraction + secondFraction, parseInt(sanitizedAnswer))) {
         this.correctAnswers++;
         this.isWellDone = true;
         this.playWin();
