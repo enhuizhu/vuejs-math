@@ -122,6 +122,10 @@ export default {
         return false;
       }
 
+      if (sanitizedAnswer == 0) {
+        sanitizedAnswer = 0;
+      }
+
       let firstFraction = this.firstFraction.numerator / this.firstFraction.denominator;
       let secondFraction = this.secondFraction.numerator / this.secondFraction.denominator;
       
@@ -130,7 +134,7 @@ export default {
       // need blur the input
       this.$refs['answer'].blur();
       
-      if (this.areFractionsEqual(firstFraction + secondFraction, parseInt(sanitizedAnswer))) {
+      if (this.areFractionsEqual(firstFraction + secondFraction, eval(sanitizedAnswer))) {
         this.correctAnswers++;
         this.isWellDone = true;
         this.playWin();
