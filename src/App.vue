@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="time-container">
+      <ProgressBar ref="progressBar" @timeOut="initAll" @danger="playDanger"></ProgressBar>
+    </div>
     <div class="result-container">
       <ul>
         <li class="error">
@@ -81,6 +84,11 @@
       <source src="@/assets/sad.wav">
       <source src="@/assets/sad.mp3">
     </audio>
+
+    <audio ref="tick" loop="true">
+      <source src="@/assets/tick.wav">
+      <source src="@/assets/tick.mp3">
+    </audio>
     
   </div>
 </template>
@@ -88,6 +96,7 @@
 <script>
 import FractionCircle from './components/FractionCircle';
 import WellDoneOrSorry from './components/WellDoneOrSorry';
+import ProgressBar from './components/ProgressBar';
 import { Decimal } from 'decimal.js';
 import { isEqual } from 'lodash';
 
@@ -145,6 +154,8 @@ export default {
         const result = this.getFractionsResult();
         this.msgForPop = `${this.firstFraction.numerator} / ${this.firstFraction.denominator} + ${this.secondFraction.numerator} / ${this.secondFraction.denominator}  =  ${result.numerator} / ${result.denominator}`
       }
+
+      this.$refs['progressBar'].reset();
     },
     initAll() {
       this.showHint = false;
@@ -154,6 +165,8 @@ export default {
       this.$refs['answer'].focus();
       this.generateNewFractionNumbers();
       this.changeBackground();
+      this.stopPlayDanger();
+      this.$refs['progressBar'].startTick()
     },
 
     changeBackground() {
@@ -176,6 +189,16 @@ export default {
 
     playSad() {
       this.$refs['sadAudio'].play();
+    },
+
+    playDanger() {
+      if (this.$refs['tick'].paused) {
+        this.$refs['tick'].play();
+      }
+    },
+
+    stopPlayDanger() {
+      this.$refs['tick'].pause();
     },
 
     generateFractionObjcet() {
@@ -279,13 +302,15 @@ export default {
   components: {
     FractionCircle,
     WellDoneOrSorry,
+    ProgressBar,
   },
 
   created: function() {
-    this.generateNewFractionNumbers();
+    
   },
   mounted() {
     console.log('audio', this.$refs['winAudio']);
+    this.initAll();
   }
 }
 </script>
@@ -324,6 +349,10 @@ export default {
     background: white;
     height: 100vh;
     overflow: auto;
+  }
+
+  .time-container {
+    padding: 10px;
   }
 
   .fraction-container {
