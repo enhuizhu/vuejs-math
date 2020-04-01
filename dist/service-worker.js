@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.3087edc1a458fa1e11bab680aa3e03be.js"
+  "/precache-manifest.2734185a9b49f569e2d903215be85a94.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "fraction-calculation"});
