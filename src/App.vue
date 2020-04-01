@@ -155,6 +155,7 @@ export default {
         this.msgForPop = `${this.firstFraction.numerator} / ${this.firstFraction.denominator} + ${this.secondFraction.numerator} / ${this.secondFraction.denominator}  =  ${result.numerator} / ${result.denominator}`
       }
 
+      this.stopPlayDanger();
       this.$refs['progressBar'].reset();
     },
     initAll() {
